@@ -124,7 +124,7 @@ stDate IncreaseDateByOneDay(stDate Date)
     return Date;
 }
 
-short NumberOfDaysBetweenTwoDates(stDate Date1, stDate Date2, bool IncludeEndDay = false)
+short GetDifferenceInDays(stDate Date1, stDate Date2, bool IncludeEndDay = false)
 {
     int Days = 0;
     while (IsDate1BeforeDate2(Date1, Date2))
@@ -139,8 +139,8 @@ int main()
 {
     stDate Date1 = ReadFullDate();
     stDate Date2 = ReadFullDate();
-    short NumberOfDays = NumberOfDaysBetweenTwoDates(Date1, Date2);
-    short NumberOfDays2 = NumberOfDaysBetweenTwoDates(Date1, Date2, true);
+    short NumberOfDays = GetDifferenceInDays(Date1, Date2);
+    short NumberOfDays2 = GetDifferenceInDays(Date1, Date2, true);
 
     std::cout << "\nDifference is: " << NumberOfDays << " Day(s).\n";
     std::cout << "Difference (including end day) is: " << NumberOfDays2 << " Day(s).\n";
