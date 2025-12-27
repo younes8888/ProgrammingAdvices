@@ -20,7 +20,7 @@ short ReadMonth()
     return Month;
 }
 
-bool IsLeap(int Year)
+bool IsLeapYear(int Year)
 {
     return (Year % 400 == 0 || (Year % 4 == 0 && Year % 100 != 0));
 }
@@ -30,7 +30,7 @@ short NumberOfDaysInMonth(short Month, short Year)
     if (Month < 1 || Month > 12 )
         return 0;
     if (Month == 2)
-        return (IsLeap(Year) ? 29 : 28);
+        return (IsLeapYear(Year) ? 29 : 28);
     short Arr31Days[7] = {1,3,5,7,8,10,12};
     for (short i = 1; i <= 7; i++)
     {

@@ -44,7 +44,7 @@ stDate ReadFullDate()
     return Date;
 }
 
-bool IsLeap(int Year)
+bool IsLeapYear(int Year)
 {
     return (Year % 400 == 0 || (Year % 4 == 0 && Year % 100 != 0));
 }
@@ -56,7 +56,7 @@ short NumberOfDaysInMonth(short Month, short Year)
 
     int DaysInCommonYear[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-    return ((Month == 2) ? (IsLeap(Year) ? 29 : 28) : DaysInCommonYear[Month - 1]);
+    return ((Month == 2) ? (IsLeapYear(Year) ? 29 : 28) : DaysInCommonYear[Month - 1]);
 }
 
 bool IsDayLastInMonth(stDate Date)

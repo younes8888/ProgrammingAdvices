@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <ctime>
-#include <fstream>
 
 struct stDate
 {
@@ -61,7 +60,7 @@ short NumberOfDaysInMonth(short Month, short Year)
 
 bool IsDayLastInMonth(stDate Date)
 {
-    
+
     return (Date.Day == NumberOfDaysInMonth(Date.Month, Date.Year)) ? true : false;
 }
 
@@ -71,29 +70,53 @@ bool IsMonthLastInYear(short Month)
     return (Month == 12);
 }
 
+// bool IsValidDate(stDate Date)
+// {
+//     if (Date.Month >= 1 && Date.Month <= 12)
+//     {
+//         if (Date.Day >= 1 && Date.Day <= NumberOfDaysInMonth(Date.Month, Date.Year))
+//         {
+//             return true;
+//         }
+//     }
+//     return false;
+// }
+
+bool IsValidDate(stDate Date)
+{
+    if (Date.Day < 1 || Date.Day > 31)
+        return false;
+    if (Date.Month < 1 || Date.Month > 12)
+        return false;
+    if (Date.Month == 2)
+    {
+        if (IsLeapYear(Date.Year))
+        {
+            if (Date.Day > 29)
+                return false;
+        }
+        else
+        {
+            if (Date.Day > 28)
+                return false;
+        }
+    }
+    short DaysInMonth = NumberOfDaysInMonth(Date.Month, Date.Year);
+    if (Date.Day > DaysInMonth)
+        return false;
+    return true;
+}
+
 int main()
 {
-    stDate Date = ReadFullDate();
 
-    if (IsDayLastInMonth(Date))
-    {
-        std::cout << "\nYes, Day is last day in month.\n";
-    }
+    stDate Date;
+    Date = ReadFullDate();
+
+    if (IsValidDate(Date))
+        std::cout << "\nYes, date is a valid date.\n";
     else
-    {
-        std::cout << "\nNo, Day is NOT last day in month.\n";
-
-    }
-
-    if (IsMonthLastInYear(Date.Month))
-    {
-        std::cout << "\nYes, month is last month in year.\n";
-    }
-    else
-    {
-        std::cout << "\nNo, month is NOT last month in year.\n";
-
-    }
+        std::cout << "\nNo, date is NOT a valid date.\n";
 
     return 0;
 }

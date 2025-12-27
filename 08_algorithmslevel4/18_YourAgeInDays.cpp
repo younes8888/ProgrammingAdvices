@@ -49,7 +49,7 @@ bool IsDate1BeforeDate2(stDate Date1, stDate Date2)
     return (Date1.Year < Date2.Year) ? true : ((Date1.Year == Date2.Year) ? (Date1.Month < Date2.Month ? true : (Date1.Month == Date2.Month ? Date1.Day < Date2.Day : false)) : false);
 }
 
-bool IsLeap(int Year)
+bool IsLeapYear(int Year)
 {
     return (Year % 400 == 0 || (Year % 4 == 0 && Year % 100 != 0));
 }
@@ -61,7 +61,7 @@ short NumberOfDaysInMonth(short Month, short Year)
 
     int DaysInCommonYear[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-    return ((Month == 2) ? (IsLeap(Year) ? 29 : 28) : DaysInCommonYear[Month - 1]);
+    return ((Month == 2) ? (IsLeapYear(Year) ? 29 : 28) : DaysInCommonYear[Month - 1]);
 }
 
 bool IsDayLastInMonth(stDate Date)

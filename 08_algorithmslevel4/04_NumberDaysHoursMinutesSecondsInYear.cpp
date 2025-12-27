@@ -11,14 +11,14 @@ short ReadYear()
     std::cin >> Year;
     return Year;
 }
-bool IsLeap(int Year)
+bool IsLeapYear(int Year)
 {
     return (Year % 400 == 0 || (Year % 4 == 0 && Year % 100 != 0));
 }
 
 short NumberOfDaysInYear(short Year)
 {
-    return (IsLeap(Year) ? 366 : 365);
+    return (IsLeapYear(Year) ? 366 : 365);
 }
 
 short NumberOfHourInYear(short Year)
